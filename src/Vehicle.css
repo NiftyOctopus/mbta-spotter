@@ -1,0 +1,22 @@
+.Vehicle {
+    position: absolute;
+}
+
+.Vehicle:hover .card {
+    opacity: 1;
+}
+
+.Vehicle .marker {
+    width: 5px;
+    height: 15px;
+    transform: rotate(0deg);
+    background-color: blue;
+}
+
+.Vehicle .card {
+    position: absolute;
+    top: 100%;
+    left: 100%;
+    font-family: monospace;
+    font-size: 11px;
+}
