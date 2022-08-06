@@ -6,6 +6,7 @@ function VehicleLabel(props) {
             <div>{props.id}</div>
             <div>{props.status}</div>
             <div>{props.stop}</div>
+            <div>{props.speed}</div>
         </div>
     )
 }

@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 
 import SelectRoute from './SelectRoute'
 import Vehicle     from './Vehicle'
+import Stop        from './Stop'
 
 const API = 'https://api-v3.mbta.com/'
 
@@ -34,6 +35,7 @@ function App() {
             const res  = await fetch(API + 'stops?filter[route]=' + route)
             const data = await res.json()
             setStops(data.data)
+            console.log(data.data)
         }
         getStops()
     }, [route])
@@ -65,11 +67,12 @@ function App() {
     const getScreen = () => {
         const width  = window.innerWidth
         const height = window.innerHeight
+        const size   = Math.min(width, height)
 
-        const x = { min: 0, max: width,  rng: width  }
-        const y = { min: 0, max: height, rng: height }
+        const dims   = { min: 0, max: size, rng: size }
+        const style  = { width: size, height: size }
 
-        return { x, y }
+        return { x: dims, y: dims, style }
     }
     
     useEffect(() => {
@@ -97,17 +100,18 @@ function App() {
     const getCoord = (screen, scale, value_a, flip=false) => {
         const offset_a = value_a    - scale.min
         const portion  = offset_a   / scale.rng
-        const offset_b = portion    * screen.rng
-        const value_b  = screen.min + offset_b
-        
-        if(!flip) return value_b
-        return screen.max - offset_b
+        //const offset_b = portion    * screen.rng
+        //const value_b  = screen.min + offset_b
+
+        //const coord = flip ? screen.max - offset_b : value_b
+        //return coord
+        const frac = flip ? 1 - portion : portion
+        return (frac * 100) + '%'
     }
 
 
     return (
         <div className='App'>
-            <p>App</p>
             <div><button onClick={getVehicles}>Refresh</button></div>
             
             <SelectRoute
@@ -116,7 +120,21 @@ function App() {
                 onRouteChange={handleRouteChange}
             />
 
-            <div className='vehicles'>
+            {/* <div className='stops'> */}
+                { stops.map((stop) => {
+                    return (
+                        <Stop
+                            key={stop.id}
+                            {...stop}
+                            getCoord={getCoord}
+                            scale={scale}
+                            screen={screen}
+                        />
+                    )
+                })}
+            {/* </div> */}
+
+            {/* <div className='vehicles'> */}
                 { vehicles.map((vehicle) => {
                     return (
                         <Vehicle
@@ -128,7 +146,7 @@ function App() {
                         />
                     )
                 })}
-            </div>
+            {/* </div> */}
         </div>
     )
 }

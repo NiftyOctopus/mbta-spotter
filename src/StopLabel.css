@@ -1,11 +1,10 @@
-.VehicleLabel {
+.StopLabel {
     font-family: monospace;
     font-size: 11px;
-    
+
     position: absolute;
     bottom: 100%;
     right: 100%;
-    opacity: 0;
-    /* z-index: 0; */
-    display: none;
+    opacity: 0.25;
+    z-index: -1;
 }
