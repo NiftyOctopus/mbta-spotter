@@ -44,17 +44,37 @@ function Vehicle(props) {
         setStopID(stop ? stop.data.id : 'None')
     }, [props.relationships.stop])
 
-    
+
+    const [tripID, setTripID] = useState('None')
+
+    useEffect(() => {
+        const trip = props.relationships.trip
+        setTripID(trip ? trip.data.id : 'None')
+    }, [props.relationships.trip])
+
+
+    const [hover, setHover] = useState(false)
+    const [focus, setFocus] = useState(false)
+
     return (
-        <div className='Vehicle' style={coords}>
+        <div
+            className='Vehicle'
+            style={coords}
+            onMouseEnter={() => !focus && setHover(true)}
+            onMouseLeave={() => setHover(false)}
+            onClick={() => setFocus(!focus)}>
+
             <div className='marker' style={angle}></div>
             
-            <VehicleLabel
-                id={props.id}
-                status={props.attributes.current_status}
-                speed={props.attributes.speed}
-                stop={stopID}
-            />
+            { (hover || focus) &&
+                <VehicleLabel
+                    id={props.id}
+                    trip={tripID}
+                    status={props.attributes.current_status}
+                    speed={props.attributes.speed}
+                    stop={stopID}
+                />
+            }
         </div>
     )
 }

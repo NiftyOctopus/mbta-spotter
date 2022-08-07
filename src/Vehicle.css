@@ -1,17 +1,11 @@
 .Vehicle {
     position: absolute;
-    /* z-index: 10; */
 }
 
 .Vehicle .marker {
-    width:   5px;
-    height: 15px;
-    background-color: blue;
+    width:  0; 
+    height: 0; 
+    border-left:   0.7em solid transparent;
+    border-right:  0.7em solid transparent;
+    border-bottom: 0.7em solid #5c5cd6;
 }
-
-.Vehicle .marker:hover + .VehicleLabel {
-    opacity: 1;
-    background-color: rgba(255, 255, 255, 0.5);
-    z-index: 10;
-}
-

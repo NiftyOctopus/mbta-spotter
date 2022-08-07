@@ -1,23 +1,20 @@
 .Stop {
     position: absolute;
-    /* z-index: 1; */
 }
 
 .Stop .marker {
-    width:  10px;
-    height: 10px;
+    width:  0.5em;
+    height: 0.5em;
     border-radius: 50%;
-    background-color: red;
+    background-color: #808080;
 }
 
 .Stop .marker:hover {
-    border: 1px solid black;
+    background-color: black;
 }
 
 .Stop .marker:hover + .StopLabel {
     opacity: 1;
-    background-color: rgba(255, 255, 255, 0.8);
-    border: 1px solid black;
-    padding: 2px;
     z-index: 10;
+    border:  1px solid black;
 }

@@ -32,9 +32,7 @@ function Stop(props) {
     return (
         <div className='Stop' style={coords}>
             <div className='marker'></div>
-            <StopLabel
-                name={props.attributes.name}
-            />
+            <StopLabel name={props.attributes.name}/>
         </div>
     )
 }

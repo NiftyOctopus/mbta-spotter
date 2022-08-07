@@ -35,7 +35,6 @@ function App() {
             const res  = await fetch(API + 'stops?filter[route]=' + route)
             const data = await res.json()
             setStops(data.data)
-            console.log(data.data)
         }
         getStops()
     }, [route])
@@ -78,23 +77,31 @@ function App() {
     useEffect(() => {
         setScreen(getScreen())
 
-        window.addEventListener('resize', () => {
-            setScreen(getScreen())
-        })
+        window.addEventListener('resize', () => { setScreen(getScreen()) })
     }, [])
 
+
+
+    const [refresh, setRefresh] = useState(0)
+
+    useEffect(() => {
+        window.setInterval(() => setRefresh(Math.random()), 10000)
+    }, [])
+    
 
     const [vehicles, setVehicles] = useState([])
 
     const getVehicles = async () => {
         const res  = await fetch(API + 'vehicles?filter[route]=' + route)
         const data = await res.json()
-        setVehicles(data.data)
+        if(data.data) setVehicles(data.data)
     }
 
     useEffect(() => {
         getVehicles()
-    }, [route])
+    }, [route, refresh])
+
+
 
 
     const getCoord = (screen, scale, value_a, flip=false) => {
@@ -112,13 +119,13 @@ function App() {
 
     return (
         <div className='App'>
-            <div><button onClick={getVehicles}>Refresh</button></div>
-            
-            <SelectRoute
-                route={route}
-                routeList={routeList}
-                onRouteChange={handleRouteChange}
-            />
+            <div className='controls'>
+                <SelectRoute
+                    route={route}
+                    routeList={routeList}
+                    onRouteChange={handleRouteChange}
+                />
+            </div>
 
             {/* <div className='stops'> */}
                 { stops.map((stop) => {

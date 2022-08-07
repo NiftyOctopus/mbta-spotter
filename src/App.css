@@ -1,36 +1,13 @@
-html, body {
-    height: 100vh;
-}
-
-body {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
 
 .App {
     position: relative;
-    height: 95vmin;
-    width: 95vmin;
-    border: 1px dashed gray;
+    height:   100vh;
+    background-color: rgba(0, 0, 0, 0.025);
 }
 
-.stops, .vehicles {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    /* transform: rotateZ(-90deg); */
-}
-
-.stops {
-    border: 1px dashed red;
-    z-index: 1;
-}
-
-.vehicles {
-    border: 1px dashed blue;
-    z-index: 0;
+.controls {
+    position: fixed;
+    top:   0;
+    left:  0;
+    right: 0;
 }

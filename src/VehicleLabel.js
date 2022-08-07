@@ -3,7 +3,8 @@ import './VehicleLabel.css'
 function VehicleLabel(props) {
     return (
         <div className='VehicleLabel'>
-            <div>{props.id}</div>
+            <div>Coach {props.id}</div>
+            <div>Trip {props.trip}</div>
             <div>{props.status}</div>
             <div>{props.stop}</div>
             <div>{props.speed}</div>

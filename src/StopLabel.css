@@ -1,10 +1,14 @@
 .StopLabel {
     font-family: monospace;
-    font-size: 11px;
+    font-size:   1em;
+    text-align:  right;
 
     position: absolute;
-    bottom: 100%;
-    right: 100%;
-    opacity: 0.25;
     z-index: -1;
+    bottom:   100%;
+    right:    100%;
+    opacity:  0.2;
+    padding:  0.1em;
+
+    background-color: rgba(255, 255, 255, 0.7);
 }
